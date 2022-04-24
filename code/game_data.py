@@ -1,4 +1,4 @@
-# dictionary
+# dictionary targets TILE files
 level_0 ={
     'terrain': '../levels/0/level_0_terrain.csv',
     'coins': '../levels/0/level_0_coins.csv',
