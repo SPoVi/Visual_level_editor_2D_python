@@ -30,10 +30,6 @@ class AnimatedTile(Tile):
         self.frame_index = 0
         self.image = self.frames[self.frame_index]
 
-        offset_y = y + size // 4
-        offset_x = x + size // 4
-        self.rect = self.image.get_rect(topleft = (offset_x,offset_y))
-
     def animate(self):
         self.frame_index += 0.10
         if self.frame_index >= len(self.frames): # number of frame images
@@ -43,3 +39,10 @@ class AnimatedTile(Tile):
     def update(self, shift):
         self.animate()
         self.rect.x += shift
+
+class Coin(AnimatedTile):
+    def __init__(self,size,x,y,path):
+        super().__init__(size,x,y,path)
+        offset_y = y + size // 2
+        offset_x = x + size // 2
+        self.rect = self.image.get_rect(center=(offset_x, offset_y))
