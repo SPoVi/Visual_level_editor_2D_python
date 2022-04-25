@@ -5,8 +5,11 @@ from tile import Tile
 
 class Level:
     def __init__(self, level_data, surface):
+        # general setup
         self.display_surface = surface
+        self.world_shift = 0
 
+        # terrain setup
         terrain_layout = import_csv_layout(level_data['terrain'])
         self.terrain_sprites = self.create_tile_group(terrain_layout, 'terrain')
 
@@ -26,5 +29,7 @@ class Level:
         return sprite_group
 
     def run(self):
+
         # run the entire game/level
-       self.terrain_sprites.draw(self.display_surface)
+        self.terrain_sprites.draw(self.display_surface)
+        self.terrain_sprites.update(self.world_shift)
