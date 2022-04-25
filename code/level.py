@@ -1,6 +1,7 @@
 import pygame
 from support import import_csv_layout
 from settings import tile_size
+from tile import Tile
 
 class Level:
     def __init__(self, level_data, surface):
