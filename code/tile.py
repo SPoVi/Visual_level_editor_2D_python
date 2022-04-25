@@ -46,3 +46,10 @@ class Coin(AnimatedTile):
         offset_y = y + size // 2
         offset_x = x + size // 2
         self.rect = self.image.get_rect(center=(offset_x, offset_y))
+
+class Palm(AnimatedTile):
+    def __init__(self,size,x,y,path, offset):
+        super().__init__(size,x,y,path)
+        offset_y = y - offset
+        self.rect = self.image.get_rect(topleft=(x,offset_y))
+        #self.rect.topleft = (x, offset_y)

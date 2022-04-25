@@ -1,7 +1,7 @@
 import pygame
 from support import import_csv_layout, import_cut_graphics
 from settings import tile_size
-from tile import Tile, StaticTile, Crate, Coin
+from tile import Tile, StaticTile, Crate, Coin, Palm
 
 class Level:
     def __init__(self, level_data, surface):
@@ -29,6 +29,10 @@ class Level:
         coins_layout = import_csv_layout(level_data['coins'])
         self.coins_sprites = self.create_tile_group(coins_layout,'coins')
 
+        # foreground palms
+        fg_palms_layout = import_csv_layout(level_data['fg palms'])
+        self.fg_palms_sprites = self.create_tile_group(fg_palms_layout, 'fg palms')
+
     def create_tile_group(self,layout,type):
         sprite_group = pygame.sprite.Group()
 
@@ -53,10 +57,20 @@ class Level:
                         sprite = Crate(tile_size,x,y)
 
                     if type == 'coins':
-                        sprite = Coin(tile_size,x,y,'../graphics/coins/gold')
+                        if val == '0': # gold
+                            sprite = Coin(tile_size,x,y,'../graphics/coins/gold')
+                        elif val == '1': # silver
+                            sprite = Coin(tile_size,x,y,'../graphics/coins/silver')
+
+                    if type == 'fg palms':
+                        if val == '0':
+                            sprite = Palm(tile_size,x,y,'../graphics/terrain/palm_small',38)
+                        if val == '1':
+                            sprite = Palm(tile_size,x,y,'../graphics/terrain/palm_large',69)
+
+
 
                     sprite_group.add(sprite)
-
 
         return sprite_group
 
@@ -79,3 +93,6 @@ class Level:
         self.coins_sprites.update(self.world_shift)
         self.coins_sprites.draw(self.display_surface)
 
+        # plams
+        self.fg_palms_sprites.update(self.world_shift)
+        self.fg_palms_sprites.draw(self.display_surface)
