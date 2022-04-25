@@ -1,5 +1,5 @@
 import pygame
-from support import import_csv_layout
+from support import import_csv_layout, import_cut_graphic
 from settings import tile_size
 from tile import Tile
 
@@ -23,6 +23,7 @@ class Level:
                     y = row_index * tile_size
 
                     if type == 'terrain':
+                        terrain_tile_list = import_cut_graphics('../graphics/terrain/terrain_tiles.png')
                         sprite = Tile(tile_size,x,y)
                         sprite_group.add(sprite)
 
