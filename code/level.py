@@ -1,5 +1,5 @@
 import pygame
-from support import import_csv_layout, import_cut_graphic
+from support import import_csv_layout, import_cut_graphics
 from settings import tile_size
 from tile import Tile
 
